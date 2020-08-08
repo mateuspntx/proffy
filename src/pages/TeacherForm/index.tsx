@@ -10,8 +10,11 @@ import api from '../../services/api';
 import warningIcon from '../../assets/images/icons/warning.svg';
 
 import './styles.css';
+import { useHistory } from 'react-router-dom';
 
 function TeacherForm() {
+
+    const history = useHistory();
 
     const [name, setName] = useState('');
     const [avatar, setAvatar] = useState('');
@@ -56,19 +59,12 @@ function TeacherForm() {
             cost: Number(cost),
             schedule: scheduleItems
         }).then(() => {
+
             alert('Cadastro realizado com sucesso!');
+            history.push('/');
+
         }).catch(() => {
             alert('Erro no cadastro!');
-        })
-
-        console.log({
-            name,
-            avatar,
-            whatsapp,
-            bio,
-            subject,
-            cost,
-            scheduleItems,
         })
     }
 
