@@ -4,29 +4,42 @@ import whatsappIcon from '../../assets/images/icons/whatsapp.svg';
 
 import './styles.css';
 
-function TeacherItem() {
+export interface Teacher {
+    id: number;
+    avatar: string;
+    bio: string;
+    cost: number;
+    name: string;
+    subject: string;
+    whatsapp: string;
+}
+
+interface TeacherItemProps {
+    teacher: Teacher;
+}
+
+const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
     return (
         <article className="teacher-item">
             <header>
-                <img src="https://avatars3.githubusercontent.com/u/8277449?s=460&u=963a019617690fb89b3d9588b01c970c1f77d2d1&v=4" alt="Foto de perfil"/>
+                <img src={teacher.avatar} alt={teacher.name}/>
                 <div>
-                    <strong>Mateus Luiz</strong>
-                    <span>Física</span>
+                    <strong>{teacher.name}</strong>
+                    <span>{teacher.subject}</span>
                 </div>
             </header>
-            <p>Apaixonando por Física durante toda a infância. Formou-se em Física e está lecionando há 10 anos e tendo vários prêmios na área.
-                <br/><br/>
-                Brinks. Tudo que foi dito é mentira.
-            </p>
+
+            <p>{teacher.bio}</p>
+            
             <footer>
                 <p>
                     Preço/Hora
-                    <strong>R$ 80,00</strong>
+                    <strong>R$ {teacher.cost}</strong>
                 </p>
-                <button className="button">
+                <a href={`https://wa.me/${teacher.whatsapp}`}>
                     <img src={whatsappIcon} alt="WhatsApp"/>
                     Entrar em contato
-                </button>
+                </a>
             </footer>
         </article>
     );

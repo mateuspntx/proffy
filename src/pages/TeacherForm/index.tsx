@@ -1,4 +1,5 @@
 import React, { useState, FormEvent } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import PageHeader from '../../components/PageHeader';
 import Input from '../../components/Input';
@@ -10,7 +11,6 @@ import api from '../../services/api';
 import warningIcon from '../../assets/images/icons/warning.svg';
 
 import './styles.css';
-import { useHistory } from 'react-router-dom';
 
 function TeacherForm() {
 
