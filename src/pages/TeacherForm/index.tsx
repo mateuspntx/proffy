@@ -5,6 +5,8 @@ import Input from '../../components/Input';
 import Textarea from '../../components/Textarea';
 import Select from '../../components/Select';
 
+import api from '../../services/api';
+
 import warningIcon from '../../assets/images/icons/warning.svg';
 
 import './styles.css';
@@ -44,6 +46,20 @@ function TeacherForm() {
 
     function handleCreateClass(e: FormEvent) {
         e.preventDefault();
+
+        api.post('/classes', {
+            name,
+            avatar,
+            whatsapp,
+            bio,
+            subject,
+            cost: Number(cost),
+            schedule: scheduleItems
+        }).then(() => {
+            alert('Cadastro realizado com sucesso!');
+        }).catch(() => {
+            alert('Erro no cadastro!');
+        })
 
         console.log({
             name,
@@ -139,6 +155,7 @@ function TeacherForm() {
                                     <Select 
                                         name="week_day" 
                                         label="Dia da semana"
+                                        value={scheduleItem.week_day}
                                         onChange={(e) => setScheduleItemValue(index, 'week_day', e.target.value)}
                                         options={[
                                             { value: '0', label: 'Domingo' },
